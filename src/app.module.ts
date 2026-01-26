@@ -9,6 +9,7 @@ import { StockModule } from './modules/stock/stock.module';
 import { CartModule } from './modules/cart/cart.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { HealthModule } from './modules/health/health.module';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { AuthModule } from './modules/auth/auth.module';
       isGlobal: true,
     }),
     MongooseModule.forRoot(
-      process.env.MONGODB_URI || 'mongodb://localhost:27017/striketsgear',
+      process.env.MONGODB_URI || 'mongodb://localhost:27017/strikersgear',
     ),
     AuthModule,
     BrandsModule,
@@ -26,6 +27,7 @@ import { AuthModule } from './modules/auth/auth.module';
     StockModule,
     CartModule,
     OrdersModule,
+    HealthModule,
   ],
 })
 export class AppModule {}

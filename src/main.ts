@@ -4,9 +4,14 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
-  // Enable CORS for frontend
+  // Enable CORS for frontend (admin + storefront)
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://localhost:3001'],
+    origin: [
+      'https://strikersgear-dashboard.vercel.app',
+      'https://strikersgear-website.vercel.app',
+      'http://localhost:3000',
+      'http://localhost:3001',
+    ],
     credentials: true,
   });
 
