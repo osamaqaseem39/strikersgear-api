@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { StockService } from './stock.service';
 import { CreateStockDto, UpdateStockDto } from './dto/stock.dto';
+import { Public } from '../auth/decorators/public.decorator';
 
 @Controller('stock')
 export class StockController {
@@ -20,22 +21,25 @@ export class StockController {
     return this.stockService.create(createStockDto);
   }
 
+  @Public()
   @Get()
   findAll(@Query('productId') productId?: string) {
     return this.stockService.findAll(productId);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.stockService.findOne(id);
-  }
-
+  @Public()
   @Get('product/:productId/size/:sizeId')
   findByProductAndSize(
     @Param('productId') productId: string,
     @Param('sizeId') sizeId: string,
   ) {
     return this.stockService.findByProductAndSize(productId, sizeId);
+  }
+
+  @Public()
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.stockService.findOne(id);
   }
 
   @Patch(':id')

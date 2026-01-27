@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto, UpdateCategoryDto } from './dto/category.dto';
+import { Public } from '../auth/decorators/public.decorator';
 
 @Controller('categories')
 export class CategoriesController {
@@ -20,16 +21,19 @@ export class CategoriesController {
     return this.categoriesService.create(createCategoryDto);
   }
 
+  @Public()
   @Get()
   findAll(@Query('activeOnly') activeOnly?: string) {
     return this.categoriesService.findAll(activeOnly === 'true');
   }
 
+  @Public()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.categoriesService.findOne(id);
   }
 
+  @Public()
   @Get(':id/size-types')
   getSizeTypes(@Param('id') id: string) {
     return this.categoriesService.getSizeTypes(id);

@@ -10,8 +10,10 @@ import {
 } from '@nestjs/common';
 import { CartService } from './cart.service';
 import { CreateCartItemDto, UpdateCartItemDto } from './dto/cart.dto';
+import { Public } from '../auth/decorators/public.decorator';
 
 @Controller('cart')
+@Public()
 export class CartController {
   constructor(private readonly cartService: CartService) {}
 

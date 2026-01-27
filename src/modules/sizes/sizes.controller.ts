@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { SizesService } from './sizes.service';
 import { CreateSizeTypeDto, CreateSizeDto } from './dto/size.dto';
+import { Public } from '../auth/decorators/public.decorator';
 
 @Controller('sizes')
 export class SizesController {
@@ -21,11 +22,13 @@ export class SizesController {
     return this.sizesService.createSizeType(createSizeTypeDto);
   }
 
+  @Public()
   @Get('types')
   findAllSizeTypes() {
     return this.sizesService.findAllSizeTypes();
   }
 
+  @Public()
   @Get('types/:id')
   findOneSizeType(@Param('id') id: string) {
     return this.sizesService.findOneSizeType(id);
@@ -37,11 +40,13 @@ export class SizesController {
     return this.sizesService.createSize(createSizeDto);
   }
 
+  @Public()
   @Get()
   findAllSizes(@Query('sizeTypeId') sizeTypeId?: string) {
     return this.sizesService.findAllSizes(sizeTypeId);
   }
 
+  @Public()
   @Get(':id')
   findOneSize(@Param('id') id: string) {
     return this.sizesService.findOneSize(id);

@@ -15,13 +15,22 @@ export class Product {
   name: string;
 
   @Prop()
+  shortDescription: string;
+
+  @Prop()
   description: string;
 
-  @Prop({ required: true })
-  price: number;
+  @Prop()
+  featuredImage: string;
+
+  @Prop([String])
+  gallery: string[];
 
   @Prop([String])
   images: string[];
+
+  @Prop({ required: true })
+  price: number;
 
   @Prop({ default: true })
   isActive: boolean;

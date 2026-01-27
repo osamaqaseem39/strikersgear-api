@@ -11,6 +11,9 @@ export class Category {
   @Prop({ unique: true, sparse: true })
   slug: string;
 
+  @Prop()
+  image: string;
+
   @Prop({ default: true })
   isActive: boolean;
 }
