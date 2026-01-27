@@ -18,7 +18,27 @@ export class Product {
   shortDescription: string;
 
   @Prop()
+  sizeInfo?: string;
+
+  @Prop()
   description: string;
+
+  @Prop()
+  sizeChart?: string;
+
+  @Prop()
+  discountPercentage?: number;
+
+  @Prop([
+    {
+      name: { type: String },
+      value: { type: String },
+    },
+  ])
+  attributes?: { name: string; value: string }[];
+
+  @Prop([String])
+  features?: string[];
 
   @Prop()
   featuredImage: string;
