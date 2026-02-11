@@ -14,6 +14,9 @@ export class Product {
   @Prop({ required: true })
   name: string;
 
+  @Prop({ unique: true, sparse: true })
+  slug: string;
+
   @Prop()
   shortDescription: string;
 
@@ -49,6 +52,52 @@ export class Product {
   @Prop([String])
   images: string[];
 
+  // Extended commerce fields used by the landing app
+  @Prop()
+  originalPrice?: number;
+
+  @Prop()
+  salePrice?: number;
+
+  @Prop()
+  isSale?: boolean;
+
+  @Prop()
+  isNew?: boolean;
+
+  @Prop()
+  rating?: number;
+
+  @Prop()
+  reviews?: number;
+
+  @Prop([String])
+  availableSizes?: string[];
+
+  @Prop([String])
+  colors?: string[];
+
+  @Prop()
+  sizeChartImageUrl?: string;
+
+  @Prop([String])
+  bodyType?: string[];
+
+  @Prop([String])
+  tags?: string[];
+
+  @Prop({ enum: ['draft', 'published', 'archived'], default: 'published' })
+  status?: 'draft' | 'published' | 'archived';
+
+  @Prop()
+  inStock?: boolean;
+
+  @Prop()
+  stockQuantity?: number;
+
+  @Prop()
+  stockCount?: number;
+
   @Prop({ required: true })
   price: number;
 
@@ -61,4 +110,5 @@ export const ProductSchema = SchemaFactory.createForClass(Product);
 // Indexes
 ProductSchema.index({ category: 1, isActive: 1 });
 ProductSchema.index({ brand: 1 });
+ProductSchema.index({ slug: 1 });
 ProductSchema.index({ name: 'text', description: 'text' });

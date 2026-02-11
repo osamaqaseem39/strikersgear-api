@@ -23,11 +23,18 @@ export class CategoriesService {
 
   async findAll(activeOnly = false): Promise<Category[]> {
     const query = activeOnly ? { isActive: true } : {};
-    return this.categoryModel.find(query).sort({ name: 1 }).exec();
+    return this.categoryModel
+      .find(query)
+      .populate('parent', 'name slug')
+      .sort({ name: 1 })
+      .exec();
   }
 
   async findOne(id: string): Promise<Category> {
-    return this.categoryModel.findById(id).exec();
+    return this.categoryModel
+      .findById(id)
+      .populate('parent', 'name slug')
+      .exec();
   }
 
   async update(id: string, updateCategoryDto: UpdateCategoryDto): Promise<Category> {

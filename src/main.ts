@@ -11,6 +11,7 @@ async function bootstrap() {
       'https://strikersgear-website.vercel.app',
       'http://localhost:3000',
       'http://localhost:3001',
+      'http://localhost:3003',
     ],
     credentials: true,
   });

@@ -11,6 +11,9 @@ export class Category {
   @Prop({ unique: true, sparse: true })
   slug: string;
 
+  @Prop({ type: Types.ObjectId, ref: 'Category', default: null })
+  parent: Types.ObjectId | null;
+
   @Prop()
   image: string;
 
@@ -23,3 +26,4 @@ export const CategorySchema = SchemaFactory.createForClass(Category);
 // Indexes
 CategorySchema.index({ slug: 1 });
 CategorySchema.index({ isActive: 1 });
+CategorySchema.index({ parent: 1 });
