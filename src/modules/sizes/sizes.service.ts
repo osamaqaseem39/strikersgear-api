@@ -26,6 +26,15 @@ export class SizesService {
     return this.sizeTypeModel.findById(id).exec();
   }
 
+  async removeSizeType(id: string): Promise<void> {
+    // Check if any sizes are using this size type
+    const sizesUsingType = await this.sizeModel.countDocuments({ sizeType: id }).exec();
+    if (sizesUsingType > 0) {
+      throw new Error(`Cannot delete size type: ${sizesUsingType} size(s) are using this type`);
+    }
+    await this.sizeTypeModel.findByIdAndDelete(id).exec();
+  }
+
   // Sizes
   async createSize(createSizeDto: CreateSizeDto): Promise<Size> {
     const size = new this.sizeModel(createSizeDto);

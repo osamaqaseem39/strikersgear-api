@@ -34,6 +34,11 @@ export class SizesController {
     return this.sizesService.findOneSizeType(id);
   }
 
+  @Delete('types/:id')
+  removeSizeType(@Param('id') id: string) {
+    return this.sizesService.removeSizeType(id);
+  }
+
   // Sizes
   @Post()
   createSize(@Body() createSizeDto: CreateSizeDto) {
