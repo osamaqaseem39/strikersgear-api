@@ -7,6 +7,7 @@ import {
   CategorySizeType,
   CategorySizeTypeSchema,
 } from '../../schemas/category-size-type.schema';
+import { CacheModule } from '../cache/cache.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import {
       { name: Category.name, schema: CategorySchema },
       { name: CategorySizeType.name, schema: CategorySizeTypeSchema },
     ]),
+    CacheModule,
   ],
   controllers: [CategoriesController],
   providers: [CategoriesService],
