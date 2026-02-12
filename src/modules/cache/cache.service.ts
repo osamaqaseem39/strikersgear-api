@@ -49,17 +49,6 @@ export class CacheService {
   }
 
   /**
-   * Reset entire cache
-   */
-  async reset(): Promise<void> {
-    try {
-      await this.cacheManager.reset();
-    } catch (error) {
-      this.logger.warn(`Cache RESET failed: ${String(error)}`);
-    }
-  }
-
-  /**
    * Get or set pattern - if key exists, return cached value, otherwise execute callback and cache result
    */
   async getOrSet<T>(
